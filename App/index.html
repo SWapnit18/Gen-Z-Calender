@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gen Z Calendar — a 14-month productivity system built for Gen Z. Track habits, set goals, balance work and life, and grow every single day.">
+<title>Gen Z Calendar — Live · Learn · Grow · Balance</title>
+<meta name="theme-color" content="#06060b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gen Z Cal">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<script>if(location.protocol!=='file:'){var l=document.createElement('link');l.rel='manifest';l.href='manifest.json';document.head.appendChild(l);}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1.0.2">
+</head>
+<body>
+
+<div class="layout">
+<nav class="bottomnav" id="bottomnav"></nav>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">Z</div>
+      <div>
+        <div class="name">Gen Z Calendar</div>
+        <div class="tagline">Live · Learn · Grow · Balance</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+      <div class="streak-chip">🔥 <span id="streakCount">0</span> day streak</div>
+    </div>
+  </header>
+
+  <!-- TODAY -->
+  <section class="view active" id="view-today">
+    <!-- Command console -->
+    <div class="command-console-wrapper" style="margin-bottom: 18px; position: relative;">
+      <input type="text" id="smart-command-input" placeholder="⌘  Type a command — /help for all options" style="width:100%; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid var(--border); color:var(--text); padding:12px 16px; font-size:13px; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:500; letter-spacing:0.3px; -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); transition:all 0.25s cubic-bezier(0.22,1,0.36,1);">
+      <div id="command-feedback" class="command-feedback hidden" style="position: absolute; top: 50px; z-index: 100; width: 100%; padding: 12px 16px; border-radius: 14px; font-size: 12.5px; font-weight: 600; text-align: center; background: rgba(11,11,18,0.95); border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.4); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);"></div>
+    </div>
+
+    <div class="hero" id="heroCard">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow" id="heroDate">—</div>
+          <div class="hero-daytype" id="heroDayType">—</div>
+          <div class="hero-sub" id="heroDayFocus">—</div>
+        </div>
+        <div class="daytype-badge" id="heroBadge">✦</div>
+      </div>
+      <div class="hero-meta">
+        <div class="m-item"><div class="m-label">Month</div><div class="m-value" id="heroMonth">—</div></div>
+        <div class="m-item"><div class="m-label">Day of month</div><div class="m-value" id="heroDayNum">—</div></div>
+        <div class="m-item"><div class="m-label">Day of year</div><div class="m-value" id="heroDayOfYear">—</div></div>
+      </div>
+      <div class="weekstrip" id="weekStrip"></div>
+    </div>
+
+    <div class="section-title">Daily checklist</div>
+    <div class="card">
+      <div class="checklist-toolbar">
+        <div class="checklist-mode-switch" role="tablist" aria-label="Checklist mode">
+          <button class="mode-btn active" data-mode="automatic">Automatic</button>
+          <button class="mode-btn" data-mode="manual">Manual</button>
+        </div>
+        <div class="checklist-hint">Use defaults or create your own plan.</div>
+      </div>
+      <ul class="checklist" id="checklist"></ul>
+      <div class="progress-track"><div class="progress-fill" id="clProgress" style="width:0%"></div></div>
+      <div class="checklist-composer" id="checklistComposer">
+        <input type="text" id="newChecklistInput" placeholder="Add your own daily task…">
+        <button class="btn small" id="addChecklistBtn">Add</button>
+      </div>
+    </div>
+
+    <div class="section-title">LAST 7 DAYS</div>
+    <div class="card">
+      <div class="trend-grid" id="trendGrid"></div>
+    </div>
+
+    <div class="section-title">💡 Smart Insights</div>
+    <div class="card">
+      <div id="smart-insights-content" style="font-size:13.5px; line-height:1.5; color:var(--text-dim);">
+        Checking checklist items generates real-time balance advice here...
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="view" id="view-calendar">
+    <div class="section-title">14 months of growth</div>
+    <div class="month-scroll" id="monthScroll"></div>
+    <div class="card">
+      <div class="month-header">
+        <div class="month-icon" id="calMonthIcon">✦</div>
+        <div>
+          <div class="month-title" id="calMonthTitle">—</div>
+          <div class="month-tag" id="calMonthTag">—</div>
+        </div>
+      </div>
+      <div class="weekday-labels" id="calWeekdayLabels"></div>
+      <div class="daygrid" id="calDayGrid"></div>
+      <div class="legend" id="calLegend"></div>
+    </div>
+  </section>
+
+  <!-- HABITS -->
+  <section class="view" id="view-habits">
+    <div class="section-title">This week's habits</div>
+    <div class="card">
+      <div class="habit-head" id="habitHead"></div>
+      <div id="habitRows"></div>
+      <div class="addhabit">
+        <input type="text" id="newHabitInput" placeholder="Add a habit, e.g. Cold shower">
+        <button class="btn" id="addHabitBtn">Add</button>
+      </div>
+    </div>
+
+    <div class="section-title">Balance wheel</div>
+    <div class="card wheel-wrap">
+      <svg id="wheelSvg" viewBox="0 0 260 260" width="240" height="240"></svg>
+      <div class="sliders" id="wheelSliders"></div>
+    </div>
+  </section>
+
+  <!-- TASKS -->
+  <section class="view" id="view-tasks">
+    <div class="section-title">Master To-Do List</div>
+    <div class="card">
+      <div class="checklist-composer" style="margin-top:0; margin-bottom:14px;">
+        <input type="text" id="newTaskInput" placeholder="Add a new task...">
+        <button class="btn small" id="addTaskBtn">Add</button>
+      </div>
+      <ul class="checklist" id="taskList"></ul>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="view" id="view-review">
+    <div class="section-title">Weekly review</div>
+    <div class="card">
+      <div class="eyebrow" id="reviewWeekLabel" style="margin-bottom:14px;">—</div>
+      <div class="field">
+        <label class="field-label">What went well?</label>
+        <textarea id="revWell" placeholder="Wins, big or small…"></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">What can improve?</label>
+        <textarea id="revImprove" placeholder="Be honest, not harsh…"></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">What I'm grateful for</label>
+        <textarea id="revGrateful" placeholder="Three things, minimum one…"></textarea>
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label class="field-label">Rate yourself (1–10)</label>
+        <div class="stars" id="revStars"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section class="view" id="view-goals">
+    <div class="section-title">Monthly goals — <span id="goalsMonthName">—</span></div>
+    <div class="card">
+      <div id="goalRows"></div>
+    </div>
+
+    <div class="section-title">📝 Add to list & reminders</div>
+    <div class="card">
+      <div class="task-form">
+        <div class="field">
+          <label class="field-label">What</label>
+          <input type="text" id="reminderWhat" placeholder="Study, call mom, gym session…">
+        </div>
+        <div class="field">
+          <label class="field-label">When</label>
+          <input type="datetime-local" id="reminderWhen">
+        </div>
+        <div class="field">
+          <label class="field-label">Where</label>
+          <input type="text" id="reminderWhere" placeholder="Library, home, office…">
+        </div>
+        <div class="field">
+          <label class="field-label">Notes</label>
+          <textarea id="reminderNotes" style="min-height:90px;" placeholder="Extra details, prep, or context…"></textarea>
+        </div>
+        <div class="task-form-actions">
+          <button class="btn" id="addReminderBtn">Add to list</button>
+          <button class="btn ghost" id="cancelReminderEditBtn" style="display:none;">Cancel</button>
+        </div>
+      </div>
+      <div class="reminder-list" id="reminderList"></div>
+    </div>
+
+    <div class="section-title">Notes / ideas</div>
+    <div class="card">
+      <textarea id="notesArea" style="min-height:160px;" placeholder="Brain dump anything here…"></textarea>
+    </div>
+
+    <div class="section-title">🔔 Reminders</div>
+    <div class="card">
+      <div class="notif-row" style="border-top:none; padding-top:0;">
+        <label for="notifToggle">Daily check-in reminder</label>
+        <button class="notif-toggle" id="notifToggle" type="button" aria-pressed="false" aria-label="Toggle daily reminders"></button>
+      </div>
+      <div id="notifStatus" style="font-size:12px; color:var(--text-faint); margin-top:4px;"></div>
+    </div>
+
+    <div class="section-title">💾 Data Management</div>
+    <div class="card">
+      <p style="font-size:13px; color:var(--text-dim); margin:0 0 12px;">Export all your data as a backup file, or import a previous backup to restore it.</p>
+      <div class="data-actions">
+        <button class="btn ghost" id="exportBtn">📤 Export Data</button>
+        <button class="btn ghost" id="importBtn">📥 Import Data</button>
+        <input type="file" id="importFile" accept=".json">
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<div class="toast" id="toast">Saved</div>
+
+<div class="checkin-modal hidden" id="checkinModal" role="dialog" aria-modal="true" aria-labelledby="checkinModalTitle">
+  <div class="checkin-modal-card">
+    <div class="checkin-modal-icon">⏰</div>
+    <h3 id="checkinModalTitle">Daily check-in reminder</h3>
+    <p>Take a minute to review your day, mark your checklist, and keep your streak alive.</p>
+    <div class="checkin-modal-actions">
+      <button class="btn" id="checkinOpenBtn">Open checklist</button>
+      <button class="btn ghost" id="checkinLaterBtn">Later</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js?v=1.0.1"></script>
+</body>
+</html>
