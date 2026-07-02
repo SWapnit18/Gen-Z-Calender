@@ -37,14 +37,14 @@ Unlike standard calendars, this calendar operates on a dedicated balance framewo
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 * **`frontend/`**: The entire frontend UI code (HTML, JS, CSS, PWA assets).
   * **`frontend/img/`**: Brand logo, favicon, and PWA icon graphics.
 * **`backend/`**: Database integration and API sync stubs.
 
 ---
 
-## 🚀 How to Run Locally
+##  How to Run Locally
 
 Since the application is built using standard, lightweight web technologies, it can be run instantly without heavy installation processes:
 
@@ -59,7 +59,7 @@ Since the application is built using standard, lightweight web technologies, it 
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 * **Markup:** Semantic HTML5
 * **Styling:** Premium Vanilla CSS3 (custom variables, modern grids, backdrop filters, spring animations)
 * **Logic:** Plain ES6 JavaScript (LocalStorage state management, async parallel fetches, lifecycle event handlers)
