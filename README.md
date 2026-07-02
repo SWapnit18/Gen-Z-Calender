@@ -1,4 +1,4 @@
-# ⚡ Gen Z Calendar
+#  Gen Z Calendar
 > Live · Learn · Grow · Balance. The ultimate life tracker for the modern era.
 
 Gen Z Calendar is a state-of-the-art, premium productivity dashboard designed with a sleek glassmorphism aesthetic, ambient color glow, and micro-animations. It operates on a custom, optimized calendar system designed to align daily vibes, balance life axis parameters, track streaks, and generate smart insights.
@@ -14,30 +14,30 @@ Unlike standard calendars, this calendar operates on a dedicated balance framewo
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 ### 🛠️ In-Place CRUD Checklist (Manual & Auto Modes)
 * **Automatic Mode:** Instantly populate optimized daily recommendations matching the day's theme.
 * **Manual Mode:** Fully custom dashboard control. Add, edit, or delete items instantly.
 * **Inline In-place Editing:** Click the edit icon (✎) to instantly morph any checklist row into an editable text field. No annoying popup dialogs. Use `Enter` to save and `Esc` to cancel.
 
-### ☀️ Dual Themes (Premium Light & Dark Modes)
+###  Dual Themes (Premium Light & Dark Modes)
 * Includes a fully optimized **Light Mode** defaulting to a clean off-white design with warm pastel gradients.
 * **Dark Mode** features deep-space glassmorphism with neon outlines.
 * Theme toggle dynamically sets the system color scheme without visual flash on reload.
 
-### 🧠 Smart Balance Analytics
+###  Smart Balance Analytics
 * **Habit Trackers:** Log daily parameters (Mind, Body, Skills, Focus, Relationships, Fun, Growth).
 * **Smart Insights:** Interactive rule-based engine analyzing unchecked sleep, balance goals, and trends.
 * **Last 7 Days Trend:** Real-time habit tracking bars with visual glow highlights.
 
-### ⌨️ Developer Command Console
+###  Developer Command Console
 * Hit `⌘` or `/` in the top bar console to search commands.
 * Command system parses syntax like `/help`, `/vibe`, and database operations locally.
 
 ---
 
-## 🚀 How to Run Locally
+##  How to Run Locally
 
 Since the application is built using standard, lightweight web technologies, it can be run instantly without heavy installation processes:
 
