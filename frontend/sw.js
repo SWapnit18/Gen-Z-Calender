@@ -6,10 +6,10 @@ const ASSETS = [
   './style.css',
   './script.js',
   './manifest.json',
-  './icon.png',
-  './icon-192.png',
-  './icon-512.png',
-  './icon-maskable-512.png',
+  './img/icon.png',
+  './img/icon-192.png',
+  './img/icon-512.png',
+  './img/icon-maskable-512.png',
   'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap'
 ];
 

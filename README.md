@@ -37,6 +37,13 @@ Unlike standard calendars, this calendar operates on a dedicated balance framewo
 
 ---
 
+## 📂 Project Structure
+* **`frontend/`**: The entire frontend UI code (HTML, JS, CSS, PWA assets).
+  * **`frontend/img/`**: Brand logo, favicon, and PWA icon graphics.
+* **`backend/`**: Database integration and API sync stubs.
+
+---
+
 ## 🚀 How to Run Locally
 
 Since the application is built using standard, lightweight web technologies, it can be run instantly without heavy installation processes:
@@ -47,8 +54,8 @@ Since the application is built using standard, lightweight web technologies, it 
    cd Gen-Z-Calender
    ```
 2. **Open the app:**
-   * Double-click `App/index.html` to open it directly in your browser.
-   * *For the best experience (and to avoid local browser file-protocol sandbox warnings), run it using a local static server like VS Code's **Live Server** extension or Node's `http-server`.*
+   * Double-click `frontend/index.html` to open it directly in your browser.
+   * *For the best experience (and to avoid local browser file-protocol sandbox warnings), run it using a local static server like VS Code's **Live Server** extension or Node's `http-server` inside the `frontend/` directory.*
 
 ---
 
