@@ -5,7 +5,7 @@ Gen Z Calendar is a state-of-the-art, premium productivity dashboard designed wi
 
 ---
 
-## 🗓️ Custom 14-Month Calendar System
+##  Custom 14-Month Calendar System
 Unlike standard calendars, this calendar operates on a dedicated balance framework containing **14 months**:
 * **Months 1 to 13:** Each month consists of exactly **25 days**.
 * **Month 14 (Reflect):** Consists of **40 days** (41 in leap years) for comprehensive year-end review, recovery, and goal setting.
